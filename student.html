@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student ID Card Generator</title>
+    <link rel="stylesheet" href="student.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="app-header">
+            <div class="logo-icon">🎓</div>
+            <h1>Student ID Card</h1>
+            <p class="subtitle">Fill in the details to generate your ID card</p>
+        </header>
+
+        <form id="studentForm" novalidate>
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="nameInput">Full Name</label>
+                <input type="text" id="nameInput" placeholder="Enter full name" required />
+            </div>
+
+            <!-- Class -->
+            <div class="form-group">
+                <label for="classInput">Class</label>
+                <input type="text" id="classInput" placeholder="eg: VII" required />
+            </div>
+
+            <!-- Section -->
+            <div class="form-group">
+                <label for="sectionInput">Section</label>
+                <input type="text" id="sectionInput" placeholder="eg: A" required />
+            </div>
+
+            <!-- DOB -->
+            <div class="form-group">
+                <label for="dobInput">Date of Birth</label>
+                <input type="date" id="dobInput" required />
+            </div>
+
+            <!-- Father Name -->
+            <div class="form-group">
+                <label for="fatherInput">Father's Name</label>
+                <input type="text" id="fatherInput" placeholder="Enter father's name" required />
+            </div>
+
+            <!-- Mother Name -->
+            <div class="form-group">
+                <label for="motherInput">Mother's Name</label>
+                <input type="text" id="motherInput" placeholder="Enter mother's name" required />
+            </div>
+
+            <!-- Contact -->
+            <div class="form-group">
+                <label for="contactInput">Contact Number</label>
+                <input type="text" id="contactInput" placeholder="Enter contact number" required />
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="addressInput">Address</label>
+                <input type="text" id="addressInput" placeholder="Enter address" required />
+            </div>
+
+            <!-- Blood Group -->
+            <div class="form-group">
+                <label for="bloodInput">Blood Group</label>
+                <input type="text" id="bloodInput" placeholder="eg: A+, B+, O+, AB+" required />
+            </div>
+
+            <!-- Admission Number -->
+            <div class="form-group">
+                <label for="admissionInput">Admsn no.</label>
+                <input type="text" id="admissionInput" placeholder="Enter admission number" required />
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-group">
+                <label for="photoInput">Photo</label>
+                <div class="file-upload-wrapper" id="fileUploadWrapper">
+                    <input type="file" id="photoInput" accept="image/*" required />
+                    <div class="file-upload-content">
+                        <span class="upload-icon">📷</span>
+                        <span class="upload-text">Click to upload photo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live ID Card Preview -->
+            <div class="preview-section">
+                <h2 class="preview-title">Live Preview</h2>
+                <div class="id-card" id="idCardPreview">
+                    <!-- Photo overlay -->
+                    <div class="id-card-photo">
+                        <img id="photoPreview" src="" alt="Student Photo" />
+                        <div class="photo-placeholder" id="photoPlaceholder">
+                            <span>👤</span>
+                        </div>
+                    </div>
+                    <!-- Blood group overlay -->
+                    <span class="overlay-blood" id="bloodPreview">—</span>
+                    <!-- Name overlay -->
+                    <span class="overlay-name" id="namePreview"></span>
+                    <!-- Class & Section overlay -->
+                    <span class="overlay-class" id="classPreview">—</span>
+                    <span class="overlay-section" id="sectionPreview">—</span>
+                    <!-- DOB overlay -->
+                    <span class="overlay-dob" id="dobPreview">DOB - </span>
+                    <!-- Father overlay -->
+                    <span class="overlay-father" id="fatherPreview">Father Name - </span>
+                    <!-- Mother overlay -->
+                    <span class="overlay-mother" id="motherPreview">Mother Name - </span>
+                    <!-- Address overlay -->
+                    <span class="overlay-address" id="addressPreview">—</span>
+                    <!-- Admission Number overlay -->
+                    <span class="overlay-admission-no" id="admissionPreview">Admission No - </span>
+                    <!-- Contact overlay -->
+                    <span class="overlay-contact" id="contactPreview">—</span>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="button" class="submit-btn" id="submitBtn" onclick="submitForm(event)">
+                <span>Submit</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✅</span>
+        <span class="toast-msg">ID Card submitted successfully!</span>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="toast toast-error" id="toastError">
+        <span class="toast-icon">⚠️</span>
+        <span class="toast-msg">Please fill in all fields and upload a photo.</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="student.js"></script>
+</body>
+
+</html>

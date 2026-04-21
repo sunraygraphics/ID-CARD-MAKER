@@ -1,0 +1,461 @@
+/* ============================
+   Base & Reset
+   ============================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 40%, #fdf2f8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px 60px;
+  color: #1e293b;
+}
+
+/* ============================
+   Container
+   ============================ */
+.container {
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ============================
+   Header
+   ============================ */
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  font-size: 42px;
+  margin-bottom: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.app-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* ============================
+   Form
+   ============================ */
+form {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px 32px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 30px -5px rgba(99, 102, 241, 0.12);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: #818cf8;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+.form-group input[type="text"]::placeholder {
+  color: #94a3b8;
+}
+
+/* ============================
+   File Upload
+   ============================ */
+.file-upload-wrapper {
+  position: relative;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #f8fafc;
+}
+
+.file-upload-wrapper:hover,
+.file-upload-wrapper.active {
+  border-color: #818cf8;
+  background: #eef2ff;
+}
+
+.file-upload-wrapper input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.upload-icon {
+  font-size: 24px;
+}
+
+.upload-text {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ============================
+   Preview Section
+   ============================ */
+.preview-section {
+  margin: 28px 0 24px;
+}
+
+.preview-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* ============================
+   ID Card (Template-based)
+   ============================ */
+.id-card {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 600 / 900;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: url('template.jpg') center/cover no-repeat;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Photo area — positioned over the template photo box */
+.id-card-photo {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35%;
+  aspect-ratio: 3 / 3.6;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.id-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.id-card-photo img.visible {
+  display: block;
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  opacity: 0.4;
+}
+
+.photo-placeholder.hidden {
+  display: none;
+}
+
+/* Shared overlay text style */
+.id-card [class^="overlay-"] {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-weight: 700;
+  color: #1a2744;
+  white-space: normal;
+  /* Enables wrapping natively */
+  word-wrap: break-word;
+  /* Prevents overflow of long unwrapped text */
+  max-width: 80%;
+}
+
+
+/* Name */
+.overlay-name {
+  top: 50%;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: 800;
+  color: #0d47a1;
+  text-transform: uppercase;
+  width: 90%;
+}
+
+/* Class */
+.overlay-class {
+  top: 54.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(10px, 3vw, 14px);
+  width: 90%;
+}
+
+/* Section */
+.overlay-section {
+  display: none;
+}
+
+/* Admission Number */
+.overlay-admission-no {
+  top: 58.5%;
+  font-size: clamp(10px, 3vw, 14px);
+  width: 90%;
+}
+
+/* DOB */
+.overlay-dob {
+  top: 62.5%;
+  font-size: clamp(10px, 3vw, 14px);
+  width: 90%;
+}
+
+/* Father */
+.overlay-father {
+  top: 67%;
+  left: 10%;
+  transform: none;
+  text-align: left;
+  font-size: clamp(9px, 2.8vw, 13px);
+  width: 80%;
+}
+
+/* Mother */
+.overlay-mother {
+  top: 74%;
+  left: 10%;
+  transform: none;
+  text-align: left;
+  font-size: clamp(9px, 2.8vw, 13px);
+  width: 80%;
+}
+
+/* Address */
+.overlay-address {
+  top: 82%;
+  left: 10%;
+  transform: none;
+  text-align: left;
+  font-size: clamp(8px, 2.5vw, 12px);
+  white-space: normal;
+  line-height: 1.2;
+  width: 80%;
+  max-height: 10%;
+  overflow: hidden;
+}
+
+/* Contact */
+.overlay-contact {
+  top: 89%;
+  left: 10%;
+  transform: none;
+  text-align: left;
+  font-size: clamp(9px, 2.8vw, 13px);
+  width: 80%;
+}
+
+.overlay-blood {
+  position: absolute;
+
+  top: 36%;
+  left: 87% !important;
+  /* move near right icon */
+
+  transform: none !important;
+  /* REMOVE center shift */
+
+  font-size: 17px;
+  color: #cc0000;
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+/* ============================
+   Submit Button
+   ============================ */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================
+   Toast Notifications
+   ============================ */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #10b981;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.toast.toast-error {
+  background: #ef4444;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ============================
+   Validation Error State
+   ============================ */
+.form-group.error input[type="text"] {
+  border-color: #f87171;
+  background: #fef2f2;
+}
+
+.form-group.error .file-upload-wrapper {
+  border-color: #f87171;
+  background: #fef2f2;
+}
+
+/* ============================
+   Responsive
+   ============================ */
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px 40px;
+  }
+
+  .app-header h1 {
+    font-size: 22px;
+  }
+
+  form {
+    padding: 22px 18px 26px;
+    border-radius: 16px;
+  }
+
+  .id-card {
+    max-width: 100%;
+  }
+
+  .id-card-body {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .id-card-photo {
+    width: 60px;
+    height: 72px;
+  }
+
+  .info-name {
+    font-size: 14px;
+  }
+}
